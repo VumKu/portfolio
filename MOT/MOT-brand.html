@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOT 明日聚落</title>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+
+    <style>
+    /* body */
+        body{
+            cursor: url('./image/cursor.png') 15 15, auto;
+            background-color: #F5F4F1;
+        }
+    /* overlay-nav */
+    .overlay-nav{
+            display: flex;
+            height: 100%;
+            width: 100%;
+            z-index: 999;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: .6s;
+
+            transform: translateX(2000px);
+        }
+
+    /* overlay-LC */
+        .left-content{
+            width: 70%;
+            background-color: #F5F4F1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .left-content a{
+            text-decoration: none;
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 40px;
+            letter-spacing: 0.2em;
+            line-height: 2em;
+            font-weight: 500;
+            color: #1C1C1C;
+
+            border-bottom: 1px solid transparent;
+
+            margin-left: 80px;
+        }
+
+        .left-content p{
+            display: inline-block;
+        }
+        .left-content p:hover{
+            transition: 1s;
+            color: #b6b6b6;
+            font-size: 30px;            
+        }
+        .left-content span{
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 15px;
+            letter-spacing: 0.2em;
+            font-weight: 300;
+            margin: 40px 18px 0 80px;
+            color: #1C1C1C;
+        }
+    /* overlay-RC */
+        .right-content{
+            width: 30%;
+            background-color: #1C1C1C;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            position: relative;
+        }
+        .rc-sideWord{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            position: absolute;
+            right: 250px;
+
+            color: #F5F4F1;
+            letter-spacing: 0.3em;
+
+            transform: rotate(90deg);
+            overflow: hidden;
+        }
+        .rc-container{
+            display: flex;
+            height: 50%;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 0 10px;
+        }
+        .mail, .socialbox{
+            width: 100%;
+            margin: 0 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .socialbox p{
+            display: inline-block;
+            border-bottom: 1px solid transparent;
+            padding: 0 0 5px 0;
+        }
+        .socialbox p:hover{
+            border-bottom: 1px solid #F5F4F1;
+            transition: .5s;
+        }
+        .right-content a{
+            text-decoration: none;
+            color: #F5F4F1;
+
+            margin: 15px 0;
+            font-size: 20px;
+        }
+        .mailtitle{
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0 10px 100px 10px;
+            color: #F5F4F1;
+        }
+        .right-content form{
+            position: relative;
+            padding: 0 10px;
+        }
+        .right-content .mailbox{
+            width: 90%;
+            border: 0;
+            outline-width: 0px;
+            padding: 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #F5F4F1;
+            background-color: #1C1C1C;
+            font-size: 18px;
+            color:#F5F4F1;
+        }
+        .mail .arrowstyle{
+            fill: #F5F4F1;
+            max-width: 10px;
+            position: absolute;
+            right: 40px;
+            top: 3px;
+            padding: 0 10px;
+        }
+        .mail .arrowstyle:hover{
+            transition: .5s;
+            right: 30px;
+        }
+        .closebtn{
+            position: absolute;
+            right: 40px;
+            top: 40px;
+            fill: #F5F4F1;
+        }
+
+
+
+    /* nav */
+        .nav-container{
+            width: 100%;
+            justify-content: space-between;
+            display: flex;
+            position: fixed;
+            z-index: 99;
+        }
+        .logo{
+            max-width: 176px;
+            margin: 25px 20px;
+        }
+        .logo img{
+            width: 100%;
+        }
+        .nav{
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        .account, .searchicon, .menu{
+            padding: 0 20px;
+        }
+        .searchicon{
+            border-right: 1px solid #888;
+        }
+        .searchWord{
+            border: 0;
+            outline-width: 0px;
+            padding: 0;
+            border-bottom: 1px solid #888;
+            background-color: transparent;
+            font-size: 16px;
+            color:#888888;
+
+            display: none;
+        }
+        .account{
+            color: #888;
+            margin-right: 20px;
+        }
+        .nav a{
+            text-decoration: none;
+        }
+
+    /* login */
+        .logInBox{
+            display: flex;
+            height: 100%;
+            width: 100%;
+            
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: url(./image/login.jpg) no-repeat;
+
+            transform: translateY(2000px);
+            transition: .6s;
+        }
+        #mainContent{
+            width: 500px;
+            height: 400px;
+            background-color: rgba(255, 255, 255, 0.4);
+            position: absolute;
+            top: 25%;
+            left: 36%;
+            border-radius: 70px 0 70px 0;
+            box-shadow: 0px 15px 15px -15px rgb(65, 65, 65);
+        }
+        .content{
+            text-align: center;
+            padding: 40px;
+            
+        }
+        .content p{
+            font-family: 'Cormorant', serif;
+            font-size: 50px;
+            font-weight: 700;
+            color: #7c7575;
+        }
+        .logArea{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 60px;
+        }
+        .logArea input{
+            width: 60%;
+            border: 0;
+            outline-width: 0px;
+            padding: 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #6b6b6b62;
+            background-color: transparent;
+            font-size: 18px;
+            color:rgba(129, 129, 129, 0.8);
+            margin: 0 0 30px 0 ;
+        }
+        .logArea ::-webkit-input-placeholder {
+            color: rgba(129, 129, 129, 0.5);
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 14px; 
+        }
+
+        .logBtn button{
+            width: 20%;
+            background-color: #b6b6b652;
+            border:0px ;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 40px 30px ;
+
+            color: #fff;
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+        }
+        .logBtn button:hover{
+            background-color: #b6b6b6;
+        }
+        .logBtn button:focus{
+            outline-width: 0px;
+            background-color: #7c7575;
+        }
+
+    /* brands */
+        .w-title{
+            text-align: center;
+            font-family:'Newsreader', serif;
+            font-size: 40PX;
+            font-weight: 700;
+            color: rgb(110, 110, 110);
+            background-color: #F5F4F1;
+
+            padding: 200px 0 50px 0;
+        }
+        .brandsName{
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            margin: 0 auto;
+            padding: 20px 10px;
+
+            border-top: 1px solid #7E7171;
+            border-bottom: 1px solid #7E7171;
+
+            font-size: 16px;
+            font-weight: 300;
+            font-family: 'Montserrat', sans-serif;
+            color: #7E7171;
+        }
+        .container{
+            padding: 0 20px;
+        }
+        .brandsName a{
+            text-decoration: none;
+            color: #7E7171;
+        }
+        .brandsName li{
+            line-height: 2em;
+        }
+
+    /* brandBanner */
+        .brandsBanner{
+            opacity: 0;
+            transition: 2s;
+
+            position: relative;
+
+            /* animation: content 1.6s ease-in; */
+        }
+
+        /* @keyframes content{
+            from{ 
+                top: 100px;
+                opacity: 0;
+            }
+            to{
+                top: 0px;
+                opacity: 1;
+            }
+        } */
+        
+        .imgBox{
+            width: 80%;
+            max-height: 500px;
+            margin: 50px auto;
+            display: flex;
+            justify-content: center;
+
+        }
+        .imgBox img{
+            width: 100%;
+            object-fit: cover;
+        }
+        .bannerWord{
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+        }
+        .brandsLogo{
+            width: 40%;
+            padding: 20px 20px;
+
+            /* border: 1px solid red; */
+        }
+        .brandsLogo img{
+            width: 100%;
+        }
+        .bannerWord p{
+            width: 100%;
+            padding: 20px 20px;
+            font-family: 'Noto Sans TC', sans-serif;
+            font-weight: 300;
+            color: #7E7171;
+            line-height: 1.6em;
+
+            /* border: 1px solid red; */
+        }
+
+        .brandsOnMedia{
+            width: 100%;
+            text-align: center;
+
+            display: none;
+        }
+
+        .selectStyle{
+            outline-width: 0;
+            border: 0;
+            padding: 0 0 3px 0;
+            background-color: #F5F4F1;
+
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 16px;
+        }
+        form>.info{
+				text-align: left;
+				display: none;
+			}
+		form>select[data-chose='aroma']~.aroma-info{
+				display: block;
+			}
+		form>select[data-chose='anglepoise']~.anglepoise-info{
+				display: block;
+			}
+        form>select[data-chose='artek']~.artek-info{
+				display: block;
+			}
+
+
+    /* product */
+        .productCarousel, .productCarousel02{
+            max-width: 100%;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+
+            margin: 150px auto 150px auto;
+        }
+
+
+        .carousel-cell {
+            width: 375px;
+            height: 500px;
+            margin-right: 397px;
+            background: transparent;
+            border-radius: 5px;
+            overflow: hidden;
+            counter-increment: carousel-cell;
+
+            position: relative;
+        }
+
+        .carousel-cell:hover img{
+            opacity: .4;
+            transition: .3s;
+        }
+
+        .flickity-prev-next-button {
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            background: transparent;
+        }
+        .flickity-prev-next-button:hover {
+            background: transparent;
+        }
+        
+    /* arrow color */
+        .flickity-prev-next-button .arrow {
+            fill: #868686;
+        }
+        .flickity-prev-next-button.no-svg {
+            color: #868686;
+        }
+    /* position outside */
+        .flickity-prev-next-button.previous {
+            left: 450px;
+        }
+        .flickity-prev-next-button.next {
+            right: 450px;
+        }
+
+        .c-img-title{
+            width: 100%;
+            height: 100%;
+            font-size: 30px;
+            font-family: 'Shippori Mincho B1', serif;
+            font-weight: 800;
+            color: #000;
+            position: absolute;
+            top: 0px;
+            left: 0;
+
+            /* border:1px solid red ; */
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            opacity: 0;
+        }
+
+        .c-img-title:hover{
+            opacity: 1;
+            transition: .3s;
+            /* text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff; */
+        }
+
+
+        /* .productImg{
+            width: 5007px;
+            position: absolute;
+            left: 0px;
+            transition: .5s;
+            display: flex;
+        }
+        .productCarousel li{
+            margin-right: 397px;
+        } */
+
+        /* .sliderDotsBox{
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+
+            margin: 0 0 100px 0;
+        }
+        .sliderDotsBox li{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid #cecaca;
+            background-color: #cecaca;
+            
+            margin: 0 8px;
+        } */
+
+
+    /* newsletter */
+    .newsletter{
+            background-color: #000;
+        }
+        .footerMail{
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 30px;
+        }
+        .fm-box{
+            max-width: 500px;
+            
+        }
+        .footerMail p{
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 26px;
+            font-weight: 800;
+            margin: 0 0 90px 0;
+            color: #F5F4F1;
+        }
+        .footerMail .mailbox{
+            width: 100%;
+            border: 0;
+            outline-width: 0px;
+            padding: 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #F5F4F1;
+            background-color: #000;
+            font-size: 18px;
+            color:#F5F4F1;
+        }
+        .footerMail a{
+            color: #F5F4F1;
+            position: relative;
+        }
+        .footerMail .arrowstyle{
+            width: 12px;
+            position: absolute;
+            right: 8px;
+        }
+
+    /* newsletter */
+        .newsletter{
+            background-color: #000;
+        }
+        .footerMail{
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 30px;
+        }
+        .fm-box{
+            max-width: 500px;
+            
+        }
+        .footerMail p{
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 26px;
+            font-weight: 800;
+            margin: 0 0 90px 0;
+            color: #F5F4F1;
+        }
+        .footerMail .mailbox{
+            width: 100%;
+            border: 0;
+            outline-width: 0px;
+            padding: 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #F5F4F1;
+            background-color: #000;
+            font-size: 18px;
+            color:#F5F4F1;
+        }
+        .footerMail a{
+            color: #F5F4F1;
+            position: relative;
+        }
+        .footerMail .arrowstyle{
+            width: 12px;
+            position: absolute;
+            right: 10px;
+            padding: 0 0 0 10px;
+        }
+        .footerMail .arrowstyle:hover{
+            right: 3px;
+            transition: .5s;
+        }        
+    /* footer */
+        .footer{
+            background-color: #F5F4F1;
+        }
+        .footerContent{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+        .footerContent p{
+            font-family:'Shippori Mincho B1', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #a3a3a3;
+        }
+        .footerContent span{
+            font-size: 14px;
+            margin-left: 12px;
+        }
+        .slogan{
+            width: 15%;
+        }
+        .footerContent .copy{
+            font-family:'Shippori Mincho B1', serif;
+            font-size: 12px;
+            color: #a3a3a3;
+        }
+        .social{
+            width: 15%;
+            /* max-width: 165px; */
+            display: flex;
+            justify-content: flex-end;
+        }
+        .social a{
+            color: #a3a3a3;
+            margin: 0 5px;
+        }
+        .socialStyle{
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 50%;
+            padding: 5px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .socialStyle svg{
+            width: 70%;
+            
+        }
+
+    /* Go-Top */
+        .go-top {
+            display: block;
+            width: 30px;
+            height: 30px;
+            line-height: 35px;
+            text-align: center;
+            font-size: 30px;
+            position: fixed;
+            bottom: -40px;
+            right: 20px;
+            -webkit-transition: all 1s ease;
+            -moz-transition: all 1s ease;
+            -o-transition: all 1s ease;
+            transition: all 1s ease;
+            background-color: #404040;
+            color: #FFFFFF;
+            text-decoration: none;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .go-top.show { bottom: 20px; }
+
+        .go-top:hover {
+            background-color: #bebebe;
+            color: #FFFFFF;
+        }
+        
+
+
+    /* RWD */
+
+        @media (max-width: 700px){
+
+        /* nav-bar調整 */
+            .nav-container{
+                margin: 0;
+                padding: 0;
+            }
+            .nav{
+                margin: 0;
+            }
+            .searchicon, .account{
+                display: none;
+            }
+            .logo{
+                max-width: 120px;
+                margin: 15px 10px;
+            }
+
+        /* full-page-nav調整 */
+            .left-content a{
+                font-size: 28px;
+                margin-left: 30px;
+            }
+            .left-content span{
+                font-size: 12px;
+                margin-left: 30px;
+            }
+            .rc-container .mailtitle{
+                font-size: 14px;
+                line-height: 1.5em;
+            }
+            .right-content a{
+                font-size: 14px;
+                margin: 10px 0;
+            }
+            .mail, .socialbox{
+                margin: 0
+            }
+            .mail .arrowstyle{
+                right: 30px;
+            }
+
+        /* Brands調整 */
+
+            .brandsName, .brandsBanner, .productCarousel{
+                display: none;
+            }
+
+            .brandsOnMedia{
+                display: block;
+            }
+
+            
+        }
+
+        @media (max-width: 500px){
+
+        /* full-page-nav調整 */
+            .left-content a{
+                font-size: 20px;
+            }
+            .mailtitle{
+                margin-bottom: 50px;
+            }
+            .mail .arrowstyle{
+            right: 15px;
+            }
+
+        /* Brand調整 */
+            .bannerWord{
+                display: block;
+            }
+
+        /* Footer調整 */
+            .footerContent{
+                padding: 20px 10px;
+            }
+            .social, .slogan{
+                display: none;
+            }
+            .copy{
+                margin: 0 auto;
+            }
+        
+        }
+
+        @media (max-width: 376px){
+
+        /* full-page-nav調整: 讓mailbox消失 */
+            .left-content a{
+                font-size: 16px;
+                margin-left: 30px;
+            }
+            .left-content span{
+                display: none;
+            }
+            .mailtitle{
+                display: none;
+            }
+            .socialbox p{
+                padding: 0 10px;
+            }
+            .right-content a{
+                font-size: 10px;
+                margin: 10px 0;
+            }
+            .rc-container{
+                justify-content: center;
+            }
+            .mail{
+                display: none;
+            }
+            
+        }
+
+        @media(max-width: 800px){
+
+        /* brands調整 */
+            .brandsName{
+                padding: 20px 0px;
+            }
+        }
+
+        @media(max-width: 1350px){
+
+            .flickity-prev-next-button.previous {
+            left: 0;
+        }
+            .flickity-prev-next-button.next {
+            right: 0;
+        }
+        }
+
+        @media(max-width: 1750px){
+
+        /* full-page-nav調整: 讓sideword消失 */
+            .rc-sideWord{
+                display: none;
+            }
+        }
+
+
+    </style>
+
+
+
+</head>
+<body>
+    <div class="overlay-nav">
+        <div class="left-content">
+            <a href="./MOT-index.html#news" class="news"><p>NEWS</p></a>
+            <a href="./MOT-story.html"><p>STORY</p></a>
+            <a href="./MOT-brand.html"><p>FURNITURE & ACCESSORIES</p></a>
+            <a href="https://www.domanitaipei.com/"><p>RESTAURANT</p></a>
+            <a href="./MOT-store.html"><p>CONTACT</p></a>
+            <span>MOT CASA  |  MOT SELECT  |  MOT FOLOWER  |  MOT ARTS</span>
+        </div>
+        <div class="right-content">
+            <div class="rc-sideWord">
+                <span>Mall Of Tomorrow</span>
+                <span>Your Life Style</span>
+            </div>
+
+            <div class="rc-container">
+                <div class="mail">
+                    <p class="mailtitle">KNOW MORE ABOUT US</p>
+                    <form>
+                        <input class="mailbox" type="email" placeholder="Email" size="20">
+
+                        <a href=""><svg class="arrowstyle" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg></a>
+                    </form>
+                </div>
+                <div class="socialbox">
+                    <a href=""><p>TWITTER</p></a>
+                    <a href=""><p>FACEBOOK</p></a>
+                    <a href=""><p>INSTAGRAM</p></a>
+                </div>
+            </div>
+        </div>
+        <a href="">
+            <svg class="closebtn" version="1.1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 20 20">
+            <title>close</title>
+            <path d="M10 8.586l-7.071-7.071-1.414 1.414 7.071 7.071-7.071 7.071 1.414 1.414 7.071-7.071 7.071 7.071 1.414-1.414-7.071-7.071 7.071-7.071-1.414-1.414-7.071 7.071z"></path>
+            </svg>
+        </a>
+    </div>
+
+    <div class="nav-container">
+        <div class="logo">
+            <a href="./MOT-index.html"><img src="./image/logo2.png" alt=""></a>
+        </div>
+        <div class="nav">
+            <div class="searchbox">
+                <input class="searchWord" type="text" placeholder="" size="20">
+                
+                <svg class="searchicon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1" class="injected-svg" data-src="/images/icon-search.svg">
+                <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+                <title>Group</title>
+                <desc>Created with Sketch.</desc>
+                <defs></defs>
+                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Topnav:-Icon" transform="translate(-1053.000000, -14.000000)" stroke="#888" class="color-stroke">
+                        <g id="Group-2" transform="translate(1054.000000, 13.000000)">
+                            <g id="Group" transform="translate(0.000000, 2.000000)">
+                                <circle id="Oval-3" cx="5.80413818" cy="5.80413818" r="5.80413818"></circle>
+                                <path d="M10.6295776,10.6295776 L14.0625,14.0625" id="Line-78" stroke-linecap="square"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                </svg>
+                
+            </div>
+
+                <div class="open">
+                    <p class="account">LOG IN</p>
+                </div>
+
+            
+                <svg class="menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="menu-icon injected-svg" width="27px" height="18px" viewBox="0 0 27 18" version="1.1" data-src="/images/icon-menu.svg">
+                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Topnav:-Icon" transform="translate(-1173.000000, -13.000000)" fill="#888" class="color-fill">
+                        <g id="Group-2" transform="translate(1054.000000, 13.000000)">
+                            <g id="Group-16" transform="translate(119.000000, 0.000000)">
+                                <rect id="Rectangle-4" x="0" y="0" width="27" height="2"></rect>
+                                <rect id="Rectangle-4-Copy" x="0" y="16" width="27" height="2"></rect>
+                                <rect id="Rectangle-4-Copy-2" x="0" y="8" width="27" height="2"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                </svg>
+           
+        </div>
+    </div>
+
+    <div class="logInBox">
+        <div id="mainContent">
+            
+                <div class="content animate__animated animate__bounce">
+                    <p>Welcome Back</p>
+                    <div class="logArea">
+                        <input type="text" placeholder="Email-address">
+                        <input type="password" placeholder="Password">
+                    </div>
+                    <div class="logBtn">
+                        <button class="ligin" type="button">Login</button>
+                        <button class="cancel" type="button">Cancel</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="brands">
+        <div class="header">
+            <div class="w-title">Furniture & Accessories</div>
+            <div class="brandsName">
+                <div class="container">
+                    <ul>
+                        <li id="aroma">@aroma</li>
+                        <li id="cappellini">Cappellini</li>
+                        <li id="gtv">Gebrüder Thonet Vienna</li>
+                        <li id="moooi">Moooi</li>
+                        <li id="verpan">Verpan</li>
+                    </ul>
+                </div>
+                <div class="container">
+                    <ul>
+                        <li id="anglepoise">Anglepoise</li>
+                        <li id="dedon">Dedon</li>
+                        <li id="FJ">House of Finn Juhl</li>
+                        <li id="stw">Stellar Works</li>
+                        <li id="vipp">Vipp</li>
+                    </ul>
+                </div>
+                <div class="container">
+                    <ul>
+                        <li id="artek">Artek</li>
+                        <li id="evasolo">Eva solo</li>
+                        <li id="maruni">Maruni</li>
+                        <li id="taschen">TASCHEN</li>
+                        <li id="vitra">Vitra</li>
+                    </ul>
+                </div>
+                <div class="container">
+                    <ul>
+                        <li id="arch">Architectmade</li>
+                        <li id="GJ">Georg Jensen Living</li>
+                        <li id="magis">Magis</li>
+                        <li id="TD">Tom Dixon</li>
+                    </ul>
+                </div> 
+            </div>
+
+            <!-- Media -->
+            <div class="brandsOnMedia">
+                <form>
+                <select data-chose="aroma" onchange="this.dataset.chose = this.value;" name="Brands" class="selectStyle">
+                    <option selected value="aroma">@aroma</option>
+                    <option value="anglepoise">Anglepoise</option>
+                    <option value="artek">Artek</option>
+                    <option>Architectmade</option>
+                    <option>Cappellini</option>
+                    <option>Dedon</option>
+                    <option>Eva solo</option>
+                    <option>Georg Jensen Living</option>
+                    <option>Gebrüder Thonet Vienna</option>
+                    <option>House of Finn Juhl</option>
+                    <option>Maruni</option>
+                    <option>Magis</option>
+                    <option>Moooi</option>
+                    <option>Stellar Works</option>
+                    <option>TASCHEN</option>
+                    <option>Tom Dixon</option>
+                    <option>Verpan</option>
+                    <option>Vipp</option>
+                    <option>Vitra</option>
+                </select>
+        
+                <div class="info aroma-info">
+                    <div class="imgBox">
+                        <img src="./image/brand/aroma/aromabanner.jpg" alt="">
+                    </div>
+        
+                    <div class="bannerWord">
+                        <div class="brandsLogo">
+                            <img src="./image/brand/aroma/aroma.png" alt="">
+                        </div>
+                        <p> 來自日本，小孩、寵物也愛的100%純天然美好。<br><br>@aroma萃取自多種植物的花、葉、樹木及果實，汲取出的純天然精油，是小孩、寵物也能安心使用的 100% 純天然美好。來自世界各地優質原料的高品質頂極香氣，淡雅中富有層次。更擅長為國際知名品牌客製專屬空間香氛，如日本伊勢丹百貨新宿店、星野集團青森屋、德國漢莎航空貴賓室、瑞士製錶精品 FRANCK MULLER 等眾多國際知名專案，為每位客戶打造的適合經典空間香調。<br><br>依據香氛精油的功能、魅力與個性，將香氣細膩溫和的感受與日式職人的堅持，融入於產品當中，追求極致完美的芳香工藝，構建更愜意的生活空間。 
+                        </p>
+                    </div>
+        
+                    <div class="productCarousel02">     
+                        <div class="carousel" data-flickity='{ "wrapAround": true }'>
+                            <div class="carousel-cell productBox1">
+                                <img src="./image/brand/aroma/aroma(1).jpg" alt="">
+                                <p class="c-img-title">Essential oils</p>
+                            </div>
+                            <div class="carousel-cell productBox2">
+                                <img src="./image/brand/aroma/aroma(2).jpg" alt="">
+                                <p class="c-img-title">Drive Time Diffuser</p>
+                            </div>
+                            <div class="carousel-cell productBox3">
+                                <img src="./image/brand/aroma/aroma(3).jpg" alt="">
+                                <p class="c-img-title">Stone TOKONAME</p>
+                            </div>
+                            <div class="carousel-cell productBox4">
+                                <img src="./image/brand/aroma/aroma(4).jpg" alt="">
+                                <p class="c-img-title">Piezo Diffuser Solo</p>
+                            </div>
+                            <div class="carousel-cell productBox5">
+                                <img src="./image/brand/aroma/aroma(5).jpg" alt="">
+                                <p class="c-img-title">Fan Diffuser Kō</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="info anglepoise-info">
+                    <div class="imgBox">
+                        <img src="./image/brand/anglepoise/anglepoisebanner.jpg" alt="">
+                    </div>
+                    <div class="bannerWord">
+                        <div class="brandsLogo">
+                            <img src="./image/brand/anglepoise/anglepoise.png" alt="">
+                        </div>
+                        <p>1932 年首次問世的 ANGLEPOISE 燈具，是由英國汽車工程師 George Carwardine 和彈簧力學專家 Herbert Terry 父子共同合作開發的成果。如今，Terry 基於 Carwardine 的完美平衡機械裝置所設計出的原創 1227 檯燈，已被公認為英國的經典設計。多年來，經營 ANGLEPOISE 品牌的 Terry 家族持續不斷與優秀的英國設計師合作，例如 Kenneth Grange 爵士那獨創、滿足專業人士對光線需求的系列燈具。<br><br>所有的新設計都忠於 Carwardine 的原始設計理念，同時包容必要的現代特色。ANGLEPOISE 是一個家喻戶曉的經典英國設計品牌，在倫敦的設計博物館、V&A 博物館、大英圖書館和科學博物館都能見到它的蹤跡。 
+                        </p>
+                    </div>
+                    <div class="productCarousel02">     
+                        <div class="carousel" data-flickity='{ "wrapAround": true }'>
+                            <div class="carousel-cell productBox1">
+                                <img src="./image/brand/anglepoise/anglepoise(1).jpg" alt="">
+                                <p class="c-img-title">Type 80</p>
+                            </div>
+                            <div class="carousel-cell productBox2">
+                                <img src="./image/brand/anglepoise/anglepoise(2).jpg" alt="">
+                                <p class="c-img-title">Type 80</p>
+                            </div>
+                            <div class="carousel-cell productBox3">
+                                <img src="./image/brand/anglepoise/anglepoise(3).jpg" alt="">
+                                <p class="c-img-title">Type 75</p>
+                            </div>
+                            <div class="carousel-cell productBox4">
+                                <img src="./image/brand/anglepoise/anglepoise(4).jpg" alt="">
+                                <p class="c-img-title">Type 80 W2</p>
+                            </div>
+                            <div class="carousel-cell productBox5">
+                                <img src="./image/brand/anglepoise/anglepoise(5).jpg" alt="">
+                                <p class="c-img-title">Type 75 Mini</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="info artek-info">
+                    <div class="imgBox">
+                        <img src="./image/brand/artek/artekbanner.jpg" alt="">
+                    </div>
+                    <div class="bannerWord">
+                        <div class="brandsLogo">
+                            <img src="./image/brand/artek/artek.png" alt="">
+                        </div>
+                        <p>創立於1935年的Artek為芬蘭設計家具的代表品牌，由「北歐現代主義之父」Alvar Aalto所領導成立，品牌內所生產之作品大多出自於Alvar Aalto的靈感，結合現代先進技術與傳統手藝製成，融入自然與建築思維、延展構思家具的新形態。 歷經近一世紀的考驗，Artek的作品除了全球各大美術館收藏外，亦成為芬蘭的現代設計典範。為了延續Alvar Aalto的現代主義精神，Artek也積極與Alvar Aalto基金會合作，致力於推動芬蘭的工業設計。<br><br>近年來Artek持續與世界頂尖的設計師合作，除了取得芬蘭設計大師Ilmari Tapiovaara的生產權利外，更與榮獲「普利茲克建築獎」的日本建築師─坂茂、「威尼師雙年展金獅獎」的德國藝術家Tobias Rehberger，以及Konstantin Grcic、Eero Mari、Eero Aarnio、深澤直人等設計大師合作，期望締造更多不同面向的設計火花。 
+                        </p>
+                    </div>
+                    <div class="productCarousel02">     
+                        <div class="carousel" data-flickity='{ "wrapAround": true }'>
+                            <div class="carousel-cell productBox1">
+                                <img src="./image/brand/artek/artek(1).jpg" alt="">
+                                <p class="c-img-title">Tea Trolley</p>
+                            </div>
+                            <div class="carousel-cell productBox2">
+                                <img src="./image/brand/artek/artek(2).jpg" alt="">
+                                <p class="c-img-title">Crinolette Armchair</p>
+                            </div>
+                            <div class="carousel-cell productBox3">
+                                <img src="./image/brand/artek/artek(3).jpg" alt="">
+                                <p class="c-img-title">Domus Chair</p>
+                            </div>
+                            <div class="carousel-cell productBox4">
+                                <img src="./image/brand/artek/artek(4).jpg" alt="">
+                                <p class="c-img-title">Kaari Desk</p>
+                            </div>
+                            <div class="carousel-cell productBox5">
+                                <img src="./image/brand/artek/artek(5).jpg" alt="">
+                                <p class="c-img-title">Stool60</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+        
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="brandsBanner">
+        <div class="imgBox">
+            <img src="./image/brand/aroma/aromabanner.jpg" alt="">
+        </div>
+        <div class="bannerWord">
+            <div class="brandsLogo">
+                <img src="./image/brand/aroma/aroma.png" alt="">
+            </div>
+            <p> 來自日本，小孩、寵物也愛的100%純天然美好。<br><br>@aroma萃取自多種植物的花、葉、樹木及果實，汲取出的純天然精油，是小孩、寵物也能安心使用的 100% 純天然美好。來自世界各地優質原料的高品質頂極香氣，淡雅中富有層次。更擅長為國際知名品牌客製專屬空間香氛，如日本伊勢丹百貨新宿店、星野集團青森屋、德國漢莎航空貴賓室、瑞士製錶精品 FRANCK MULLER 等眾多國際知名專案，為每位客戶打造的適合經典空間香調。<br><br>依據香氛精油的功能、魅力與個性，將香氣細膩溫和的感受與日式職人的堅持，融入於產品當中，追求極致完美的芳香工藝，構建更愜意的生活空間。 
+            </p>
+        </div>
+    </div>
+
+    <div class="productCarousel">
+        <!-- <div class="arrowBox">
+        <div class="arrow-left">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <title>arrow_back_ios</title>
+            <path fill=#b6b6b6 d="M11.672 3.891l-8.109 8.109 8.109 8.109-1.781 1.781-9.891-9.891 9.891-9.891z"></path>
+            </svg>
+            
+        </div>
+        <div class="arrow-right">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <title>arrow_forward_ios</title>
+                <path fill=#b6b6b6 d="M5.859 4.125l2.156-2.109 9.984 9.984-9.984 9.984-2.156-2.109 7.922-7.875z"></path>
+                </svg>
+        </div>
+        </div> -->
+
+        <div class="carousel" data-flickity='{ "wrapAround": true }'>
+            <div class="carousel-cell productBox1">
+                <img src="./image/brand/aroma/aroma(1).jpg" alt="">
+                <p class="c-img-title">Essential oils</p>
+            </div>
+            <div class="carousel-cell productBox2">
+                <img src="./image/brand/aroma/aroma(2).jpg" alt="">
+                <p class="c-img-title">Drive Time Diffuser</p>
+            </div>
+            <div class="carousel-cell productBox3">
+                <img src="./image/brand/aroma/aroma(3).jpg" alt="">
+                <p class="c-img-title">Stone TOKONAME</p>
+            </div>
+            <div class="carousel-cell productBox4">
+                <img src="./image/brand/aroma/aroma(4).jpg" alt="">
+                <p class="c-img-title">Piezo Diffuser Solo</p>
+            </div>
+            <div class="carousel-cell productBox5">
+                <img src="./image/brand/aroma/aroma(5).jpg" alt="">
+                <p class="c-img-title">Fan Diffuser Kō</p>
+            </div>
+        </div>
+
+        <!-- <ul class="productImg">
+            <li><img src="./image/brand/aroma/aroma(5).jpg" alt=""></li>
+            <li><img src="./image/brand/aroma/aroma(1).jpg" alt=""></li>
+            <li><img src="./image/brand/aroma/aroma(2).jpg" alt=""></li>
+            <li><img src="./image/brand/aroma/aroma(3).jpg" alt=""></li>
+            <li><img src="./image/brand/aroma/aroma(4).jpg" alt=""></li>
+            <li><img src="./image/brand/aroma/aroma(5).jpg" alt=""></li>
+            <li><img src="./image/brand/aroma/aroma(1).jpg" alt=""></li>
+        </ul> -->
+    </div>
+
+    <div class="newsletter">
+        <div class="footerMail">
+            <div class="fm-box">
+                <p>SIGN UP FOR NEWSLETTER</p>
+                <form>
+                    <input class="mailbox" type="email" placeholder="Email" size="20">
+
+                    <a href=""><svg class="arrowstyle" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg></a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footerContent">
+            <p class="slogan">MOT<span>A better tomorrow.</span></p>
+            <p class="copy">COPYRIGHT © 2021 MOT ALL RIGHTS RESERVED.</p>
+            <div class="social">
+                <a href="">
+                    <div class="socialStyle">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" class="svg-inline--fa fa-twitter fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="socialStyle">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f" class="svg-inline--fa fa-facebook-f fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="socialStyle">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram" class="svg-inline--fa fa-instagram fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="go-top-btn">
+        <a href="#myAnchor" class="go-top">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <title>keyboard_arrow_up</title>
+                <path fill=#F5F4F1 d="M7.406 15.422l-1.406-1.406 6-6 6 6-1.406 1.406-4.594-4.594z"></path>
+            </svg>
+        </a>
+    </div>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+
+    <script>
+
+    // 換品牌時能夠漸變
+        $('.brandsBanner').css('opacity','1');
+
+    // navbar滑下來變色
+        $(window).scroll(function(){
+            console.log('height',$(this).scrollTop())
+            let windowScrollTop = $(this).scrollTop()
+
+            if (windowScrollTop > 50) {
+                $('.nav-container').css('background','#1C1C1C')
+            }
+            else {
+                $('.nav-container').css('background','none')
+            }
+        })
+
+    // full page選單進場
+        $('.menu').click(function(event){
+           event.preventDefault()
+
+           let navPosition = {
+               width: '100%',
+               transform: 'translateX(0)'
+           }
+           $('.overlay-nav').css(navPosition);
+           
+       })
+    // full page選單退場
+       $('.closebtn').click(function(event){
+           event.preventDefault()
+
+           let closeNav = {
+               width: 0,
+               transform: 'translateX(2000px)'
+           }
+           $('.overlay-nav').css(closeNav);
+       })
+
+    // login打開    
+        $('.open').click(function(){
+            let openstyle = {
+                height: '100%',
+                transform:'translateY(0px)'
+            }
+           $('.logInBox').css(openstyle)
+        })
+        
+    // login關掉
+        $('.cancel').click(function(){
+            let closestyle = {
+                height: '0%',
+                transform:'translateY(2000px)'
+            }
+            $('.logInBox').css(closestyle)
+        })
+
+    // 選單連結同一頁指定位置時，跳轉並收起選單    
+       $('.news').click(function(){
+        let closeNav = {
+               width: 0,
+               transform: 'translateX(2000px)'
+           }
+        $('.overlay-nav').css(closeNav);
+       })
+
+
+    // search-icon點下去會展開搜尋框    
+       $('.searchicon').click(function(event){
+            event.preventDefault()
+            console.log('display',$('.searchWord').css('display'))
+            
+
+            if( $('.searchWord').css('display') === 'none'){
+                $('.searchWord').css('display','inline-block');
+            }
+            else{
+                $('.searchWord').css('display','none');
+            }
+
+       })
+
+
+    // Go-Top
+       $(window).scroll(function(event){
+            let scroll = $(window).scrollTop();
+            if (scroll >= 50) {
+            $(".go-top").addClass("show");
+            } else {
+            $(".go-top").removeClass("show");
+            }
+        });
+
+        $('.go-top-btn').click(function(){
+            event.preventDefault();
+            $("html,body").animate(
+        {
+            scrollTop: 0,
+        },600);
+        });
+
+
+
+    // carousel 換圖(手刻)
+    //    let page = 0;
+
+    //    $('.arrow-left').click(function(){
+    //        page --;
+    //        $('.productImg').css('left', (page - 1) * -772 + 'px');
+
+    //    })
+
+
+
+    //    $('.sliderDotsBox li') .click(function(){
+    //         page = $(this).index();
+
+    //         $(this).css('background', '#1c1c1c')
+    //         $(this).siblings().css('background', '#cecaca')
+    //         $('.productImg').css('left', $(this).index() * -772 + 'px')
+    //    })
+    
+
+
+
+    
+    // 換不同品牌時，內容也要換
+    $('#aroma').click(function(event){
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+
+
+        let content =         
+        $('.imgBox img').attr('src','./image/brand/aroma/aromabanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/aroma/aroma.png');
+
+        $('.bannerWord p').html(`來自日本，小孩、寵物也愛的100%純天然美好。<br><br>@aroma萃取自多種植物的花、葉、樹木及果實，汲取出的純天然精油，是小孩、寵物也能安心使用的 100% 純天然美好。來自世界各地優質原料的高品質頂極香氣，淡雅中富有層次。更擅長為國際知名品牌客製專屬空間香氛，如日本伊勢丹百貨新宿店、星野集團青森屋、德國漢莎航空貴賓室、瑞士製錶精品 FRANCK MULLER 等眾多國際知名專案，為每位客戶打造的適合經典空間香調。<br><br>依據香氛精油的功能、魅力與個性，將香氣細膩溫和的感受與日式職人的堅持，融入於產品當中，追求極致完美的芳香工藝，構建更愜意的生活空間。`);
+
+        $('.productBox1 img').attr('src','./image/brand/aroma/aroma(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/aroma/aroma(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/aroma/aroma(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/aroma/aroma(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/aroma/aroma(5).jpg')
+
+        $('.productBox1 p').text('Essential oils')
+        $('.productBox2 p').text('Drive Time Diffuser')
+        $('.productBox3 p').text('Stone TOKONAME')
+        $('.productBox4 p').text('Piezo Diffuser Solo')
+        $('.productBox5 p').text('Fan Diffuser Kō')
+
+        },500)
+
+    })
+
+    $('#cappellini').click(function(event){
+        
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+
+        $('.imgBox img').attr('src','./image/brand/cappellini/cappellinibanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/cappellini/cappellini.svg');
+
+
+        $('.bannerWord p').html(`義大利經典與趨勢家具設計品牌Cappellini，自1946年創立至今在全球設計家居產業中佔有舉足輕重的地位，曾被英國媒體Financial Times喻為最負盛名的義大利設計公司。<br><br>Cappellini最早是米蘭北部小鎮的一個木工坊，第二代接班人Giulio Cappellini於二次世界大戰後意識到家具產業的品牌化潮流，遂決定將木工坊轉型開始專心製作家具；其高度的創新精神，奠定了品牌獨有的風格與氣息，1980年代前後Giulio Cappellini以獨到的眼光發掘當時尚未成名的設計師，如Ronan & Erwan Bouroullec、Jasper Morrison、Marcel Wanders、Marc Newson、Nendo及Tom Dixon等數十位現在已是國際知名的設計大師，推出多件突破家具市場與消費者想像的前衛作品，並獲世界各大知名博物館，如：美國紐約現代藝術博物館、英國倫敦維多利亞與亞伯特博物館、法國巴黎龐畢度中心典藏；國際精品名牌Gucci、YSL也皆因著Cappellini獨特的形象與風格，主動提出空間設計合作;甚至連國際巨星Brad Pitt、Woody Allen，時裝設計師Tom Ford等都為Cappellini作品著迷不已。`)
+
+        $('.productBox1 img').attr('src','./image/brand/cappellini/cappellini(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/cappellini/cappellini(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/cappellini/cappellini(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/cappellini/cappellini(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/cappellini/cappellini(5).jpg')
+
+        $('.productBox1 p').text('DALIA')
+        $('.productBox2 p').text('CAPO')
+        $('.productBox3 p').text('BONG')
+        $('.productBox4 p').text('BASKET 011')
+        $('.productBox5 p').text('01 CHAIR')
+        
+        
+        },500)
+    })    
+
+    $('#gtv').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+
+        $('.imgBox img').attr('src','./image/brand/gtv/gtvbanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/gtv/gtv.png');
+
+
+        $('.bannerWord p').html(`GTV 是 Gebrüder Thonet Vienna 的縮寫，而「 Gebrüder 」是德文「兄弟」的意思，GTV 便是 1853 年時 Michael Thonet 受皇室親王 Metternich 邀請至維也納後，與五位兒子一起創立的品牌。品牌迄今已超過一世紀以上，但「材料挑選與製程工法(Materials and Process」與「可持續發展性（Sustainability）」是品牌能歷久彌新的重點關鍵。 Michael Thonet 專利的曲木技術，是將實木經過蒸氣加熱，再以鋼鐵模具加壓塑型， GTV 便運用這個專利技術，創作出許多膾炙人口的代表作品，如1號椅正是為維也納施瓦岑貝格宮（Schwarzenberg Palace）所設計，而後將傳統工藝與工業製程完美結合的「14 號椅」，更在 1859 年至 1930 年間生產了超過 5000 萬件，時至今日仍是持續熱賣中，成為 GTV 最具代表性的傢俱作品。 <br><br>融合傳統工藝與優雅外型，一直是 GTV 創立超過百年堅持的唯一準則，但他們也並未隨著時代洪流而躊躇不前，近年來所發表的傢俱作品，更跨領域與許多國際知名設計師聯手合作，希望透過百年經驗的傳承，給予世人更多對於傢俱的想像及搭配空間的靈感。`)
+
+        $('.productBox1 img').attr('src','./image/brand/gtv/gtv(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/gtv/gtv(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/gtv/gtv(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/gtv/gtv(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/gtv/gtv(5).jpg')
+
+        $('.productBox1 p').text('Loïe')
+        $('.productBox2 p').text('Suzenne')
+        $('.productBox3 p').text('Allegory Desk')
+        $('.productBox4 p').text('Hold On Daybed')
+        $('.productBox5 p').text('Lehnstuhl')
+
+        },500)
+    })
+
+    $('#stw').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+        
+        $('.imgBox img').attr('src','./image/brand/stw/stwbanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/stw/stw.png');
+
+
+        $('.bannerWord p').html(`創立於2012年，Stellar Works致力於經典的設計、延續文化精隨，引領東方藝術復興。品牌著重於手感工藝的傳承，在製程上不斷革新，且結合了當代手法，使每件家具彰顯出歷久彌新的永恆之美。<br><br>2015年，Stellar Works任命如恩設計 （Neri & Hu）為品牌創意總監，以全球化的觀念結合多元、重疊的設計理念創造出新的設計典範。Stellar Works成立至今，得益於日本先進高效的經營管理策略，法國精湛的家具製作工藝，與上海生產團隊雄厚的技術實力。作品遍及世界各地的私宅、頂級酒店、餐廳和商業公共空間。`)
+
+        $('.productBox1 img').attr('src','./image/brand/stw/stw(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/stw/stw(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/stw/stw(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/stw/stw(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/stw/stw(5).jpg')
+
+        $('.productBox1 p').text('Risom C140')
+        $('.productBox2 p').text('Crawford Dining Chair')
+        $('.productBox3 p').text('Arita Liquid')
+        $('.productBox4 p').text('Mūn')
+        $('.productBox5 p').text('Ori Dining chair')
+
+        },500)
+    })
+
+    $('#verpan').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+
+        $('.imgBox img').attr('src','./image/brand/verpan/verpanbanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/verpan/verpan.png');
+
+
+        $('.bannerWord p').html(`被譽為丹麥20世紀最具影響力的家具與室內設計師Verner Panton，就是經典椅Panton Chair的創作者。Verner Panton認為燈光與顏色有著密不可分的關係，舉凡自然光與人造光的差別、光線的強與弱、不同的色溫甚至燈具本身的材質結構，對室內空間都有著極大的影響。Verpan經典代表作品Panto燈具，將巧思放在燈具主體結構的中心，展現出當時時代背景主流之一的太空時代(Space Age)風格；而Spiral燈具則是透過捲曲閃亮的片狀塑料，創造迷幻的空間氣氛。`)
+
+        $('.productBox1 img').attr('src','./image/brand/verpan/verpan(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/verpan/verpan(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/verpan/verpan(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/verpan/verpan(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/verpan/verpan(5).jpg')
+
+        $('.productBox1 p').text('Fun 1 STM')
+        $('.productBox2 p').text('Panto Pendant')
+        $('.productBox3 p').text('Pantop')
+        $('.productBox4 p').text('Wire Table Lamp')
+        $('.productBox5 p').text('Barboy')
+
+        },500)
+
+    })
+
+    $('#anglepoise').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+        
+        $('.imgBox img').attr('src','./image/brand/anglepoise/anglepoisebanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/anglepoise/anglepoise.png');
+
+
+        $('.bannerWord p').html(`1932 年首次問世的 ANGLEPOISE 燈具，是由英國汽車工程師 George Carwardine 和彈簧力學專家 Herbert Terry 父子共同合作開發的成果。如今，Terry 基於 Carwardine 的完美平衡機械裝置所設計出的原創 1227 檯燈，已被公認為英國的經典設計。多年來，經營 ANGLEPOISE 品牌的 Terry 家族持續不斷與優秀的英國設計師合作，例如 Kenneth Grange 爵士那獨創、滿足專業人士對光線需求的系列燈具。<br><br>所有的新設計都忠於 Carwardine 的原始設計理念，同時包容必要的現代特色。ANGLEPOISE 是一個家喻戶曉的經典英國設計品牌，在倫敦的設計博物館、V&A 博物館、大英圖書館和科學博物館都能見到它的蹤跡。`)
+
+        $('.productBox1 img').attr('src','./image/brand/anglepoise/anglepoise(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/anglepoise/anglepoise(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/anglepoise/anglepoise(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/anglepoise/anglepoise(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/anglepoise/anglepoise(5).jpg')
+
+        $('.productBox1 p').text('Type 80')
+        $('.productBox2 p').text('Type 80')
+        $('.productBox3 p').text('Type 75')
+        $('.productBox4 p').text('Type 80 W2')
+        $('.productBox5 p').text('Type 75 Mini')
+        
+        },500)
+    })
+
+    $('#dedon').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+
+        $('.imgBox img').attr('src','./image/brand/dedon/dedonbanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/dedon/dedon-logo.png');
+
+
+        $('.bannerWord p').html(`德國頂級戶外家具品牌Dedon，創立於1990年，品牌創辦人Bobby Dekeyser本為專業足球員，因傷離開球隊後，由於熱愛戶外生活，發起將室內客廳移至戶外生活的想法，為了實踐這樣的理想創立了品牌，並致力於研發適合戶外家具的材質，獨家專利的Dedon Fiber，可抵擋各種天氣狀況與劇烈溫度變化，可自然分解、減輕對環境的負擔，成為品牌最大的價值。<br><br>Dedon更結合了菲律賓宿霧島的傳統編織工藝及多位國際設計大師，如：Richard Frinier、Jean-Marie Massaud、Philippe Starck等的密切合作，成功地開創了品牌獨一無二的風格，成為戶外家具的領導品牌。 Dedon的魅力風靡全球，在世界各地的精品酒店、皇室名流及國際巨星的豪宅裡都會出現其身影。創辦人Bobby Dekeyser更持續以編織工藝、創新設計與環保材質等元素進行產品開發，將Dedon的品牌精神持續延續。`)
+
+        $('.productBox1 img').attr('src','./image/brand/dedon/dedon(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/dedon/dedon(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/dedon/dedon(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/dedon/dedon(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/dedon/dedon(5).jpg')
+
+        $('.productBox1 p').text('AIIR')
+        $('.productBox2 p').text('NESTREST')
+        $('.productBox3 p').text('DEAN')
+        $('.productBox4 p').text('THE OTHERS')
+        $('.productBox5 p').text('TIBBO')
+
+        },500)
+    })
+
+    $('#FJ').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+        
+        $('.imgBox img').attr('src','./image/brand/FJ/FJbanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/FJ/FJ.png');
+
+
+        $('.bannerWord p').html(`House of Finn Juhl是丹麥家具品牌One Collection的經典支線，如同北歐優秀專注的設計傳統一般，極度相當講究作品的品質，並希望透過北歐家具設計師共同的風格及堅持，將品牌精神持續推廣，堅持在手工製成與規格生產間，嚴格把關每一個細節，不論是提升作品耐用度或是符合人體工學的舒適感，皆為細膩工藝技術的展現。<br><br>品牌中被稱為「丹麥設計之父」Finn Juhl系列作品，更是最值得細心品味及珍藏的美學之作，Finn Juhl對於設計的獨到見解，在四、五十年後的今天，依然屹立不搖，One Collection更成為全世界唯一授權、生產販賣Finn Juhl經典家具系列的品牌，致力於使經典作品重現並與藏家分享。`)
+
+        $('.productBox1 img').attr('src','./image/brand/FJ/FJ(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/FJ/FJ(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/FJ/FJ(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/FJ/FJ(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/FJ/FJ(5).jpg')
+
+        $('.productBox1 p').text('45 CHAIR')
+        $('.productBox2 p').text('BAKER SOFA')
+        $('.productBox3 p').text('CHIEFTAIN CHAIR')
+        $('.productBox4 p').text('LITTLE MOTHER')
+        $('.productBox5 p').text('PELICAN CHAIR')
+
+
+        },500)
+    })
+
+    $('#moooi').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+
+        
+        $('.imgBox img').attr('src','./image/brand/moooi/moooibanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/moooi/moooi.png');
+
+
+        $('.bannerWord p').html(`moooi 為荷蘭文 mooi  ─ 美麗的意思，而特意加上的一個字母 O ，藉此期許品牌能更加綻放美麗光芒。現任品牌藝術總監暨創辦人之一的設計鬼才 Marcel Wanders ，於 1996 年以 Knotted Chair 特殊的設計、造型以及製成，引起廣泛的注意與討論，並被美國紐約現代藝術博物館永久收藏。 2001 年 Marcel Wanders 與 Casper Vissers 共同創立 moooi 品牌，邀請各地優秀的設計師以合作方式加入團隊，將更多創新與開放元素融入荷蘭設計之中，如由新一代荷蘭設計師 Maarten Baas 打造的「 Smoke 」系列作品，透過繁複的燒製過程與方法，突顯出木頭不同的紋理與線條，讓每件作品都是獨一無二的經典；由瑞典設計團隊 Front 所打造的 Horse Lamp 、 Pig Table 等，更是以戲劇性的效果顛覆人們對於家具的想像。<br><br>moooi 反向思考、不按照常理出牌的品牌精神，總能帶給消費者不一樣的感官體驗， 2002 年起更邀請具話題性的荷蘭攝影大師 Erwin Olaf 擔任廣告拍攝，在設計與時尚間激發出另一層面的感官衝擊，將作品呈現提升到藝術的價值層面，在眾多設計品牌中突顯出獨特的風格品味。`)
+
+        $('.productBox1 img').attr('src','./image/brand/moooi/moooi(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/moooi/moooi(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/moooi/moooi(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/moooi/moooi(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/moooi/moooi(5).jpg')
+
+        $('.productBox1 p').text('Perch Light')
+        $('.productBox2 p').text('BFF')
+        $('.productBox3 p').text('Dwarf Rhino')
+        $('.productBox4 p').text('Leap')
+        $('.productBox5 p').text('Meshmatics Chandelier')
+
+        },500)
+    })
+
+    $('#vipp').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+        
+        $('.imgBox img').attr('src','./image/brand/vipp/vippbanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/vipp/vipp.svg');
+
+
+        $('.bannerWord p').html(`創始於1939年，創造世界第一個腳踏式垃圾桶的丹麥品牌VIPP，是專以手工生產圓潤不銹鋼垃圾桶的公司。丹麥設計師Holger Nielsen為體貼婚妻子Marie所想到的點子。當時Marie已經擁有這樣的Holger在對品質的堅持下設計創造，發明了世界第一個腳踏上，擁有自己的美髮沙龍，Holger在美麗太太的要求下，做了一個實用又方便的垃圾桶讓她放在店裡。式垃圾桶，腳一踩，可以把垃圾桶打開，取名VIPP。充滿現代感輪廓的VIPP垃圾桶，已是二十世紀非常具有特色的設計作品，同時也深深影響當代垃圾桶的功能與外觀。<br><br>常邀請全球設計師共襄盛舉，設計多款VIPP垃圾桶義賣，拍賣所得全數捐款給慈善機構。看似平凡的垃圾桶在藝術家，設計師的巧思下，展現多元風貌，參與設計的藝術家包括丹麥名模Helena Christensen，U2的Bono，美國設計師Karim Rashid，英國設計師Dominic Wilcox等，慈善晚會當天所有作品銷售一空。`)
+
+        $('.productBox1 img').attr('src','./image/brand/vipp/vipp(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/vipp/vipp(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/vipp/vipp(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/vipp/vipp(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/vipp/vipp(5).jpg')
+
+        $('.productBox1 p').text('Pedal bin')
+        $('.productBox2 p').text('VIPP 456')
+        $('.productBox3 p').text('Loft sofa')
+        $('.productBox4 p').text('VIPP 280')
+        $('.productBox5 p').text('VIPP 421')
+
+        },500)
+    })
+
+    $('#artek').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+        
+        $('.imgBox img').attr('src','./image/brand/artek/artekbanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/artek/artek.png');
+
+
+        $('.bannerWord p').html(`創立於1935年的Artek為芬蘭設計家具的代表品牌，由「北歐現代主義之父」Alvar Aalto所領導成立，品牌內所生產之作品大多出自於Alvar Aalto的靈感，結合現代先進技術與傳統手藝製成，融入自然與建築思維、延展構思家具的新形態。 歷經近一世紀的考驗，Artek的作品除了全球各大美術館收藏外，亦成為芬蘭的現代設計典範。為了延續Alvar Aalto的現代主義精神，Artek也積極與Alvar Aalto基金會合作，致力於推動芬蘭的工業設計。<br><br>近年來Artek持續與世界頂尖的設計師合作，除了取得芬蘭設計大師Ilmari Tapiovaara的生產權利外，更與榮獲「普利茲克建築獎」的日本建築師─坂茂、「威尼師雙年展金獅獎」的德國藝術家Tobias Rehberger，以及Konstantin Grcic、Eero Mari、Eero Aarnio、深澤直人等設計大師合作，期望締造更多不同面向的設計火花。`)
+
+        $('.productBox1 img').attr('src','./image/brand/artek/artek(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/artek/artek(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/artek/artek(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/artek/artek(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/artek/artek(5).jpg')
+
+        $('.productBox1 p').text('Tea Trolley')
+        $('.productBox2 p').text('Crinolette Armchair')
+        $('.productBox3 p').text('Domus Chair')
+        $('.productBox4 p').text('Kaari Desk')
+        $('.productBox5 p').text('Stool60')
+
+        },500)
+    })
+
+    $('#evasolo').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+        
+        $('.imgBox img').attr('src','./image/brand/evasolo/evasolobanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/evasolo/evasolo.png');
+
+
+        $('.bannerWord p').html(`地處極地氣候之下的北歐五國，在設計的DNA中，總是少不了極簡、美麗、實用、永續等思維，來自丹麥的Eva Solo，可謂其中的代表品牌。創始於1913年，承襲百年精湛的工藝技術，融合時代潮流的創新設計，堅持創造出「簡單、漂亮且真正有用途的產品」。如同Eva Solo的設計理念，品牌一直以來的堅持與特色，是讓每件作品在實用功能之外，都富有美麗獨特的外型。Eva Solo也是全球國際設計獎項的常勝軍，獲得超過150個設計獎項的肯定。Eva Solo傳遞的品牌精神到現在仍然不變，堅持百年的美學設計，讓生活成為經典，並將北歐設計哲學傳遞至你我家中。`)
+
+        $('.productBox1 img').attr('src','./image/brand/evasolo/evasolo(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/evasolo/evasolo(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/evasolo/evasolo(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/evasolo/evasolo(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/evasolo/evasolo(5).jpg')
+
+        $('.productBox1 p').text('Vacuum')
+        $('.productBox2 p').text('Solar cell lamps')
+        $('.productBox3 p').text('Laze')
+        $('.productBox4 p').text('Abalone Barstool')
+        $('.productBox5 p').text('Combo Chair')
+
+
+        },500)
+    })
+
+    $('#maruni').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+        
+        $('.imgBox img').attr('src','./image/brand/maruni/marunibanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/maruni/maruni.svg');
+
+
+        $('.bannerWord p').html(`「工藝品工業化」是 Maruni 一直以來的品牌精神，自 1928 年成立於廣島後，創造許多高品質的木製家具。「昭和曲木工廠」為 Maruni 的前身，創辦者山中武夫先生開發的精密曲木技術與工藝精緻量化思維，成為日本木材工業的技術先趨，成功地將工藝品中的繁複技法運用於工業製品上，奠定了 Maruni 在日本家具業屹立不搖的品牌地位。<br><br>以強調無須思考「 without thought 」，憑直覺使用極簡設計風格聞名的日本工業設計大師深澤直人，去繁為簡的設計概念與 Maruni 一拍即合， 2008 年開始即有一系列的合作，其中包含 HIROSHIMA 與 TRADITIONAL 兩個經典系列。`)
+
+        $('.productBox1 img').attr('src','./image/brand/maruni/maruni(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/maruni/maruni(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/maruni/maruni(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/maruni/maruni(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/maruni/maruni(5).jpg')
+
+        $('.productBox1 p').text('Hiroshima Barstool')
+        $('.productBox2 p').text('Rounnd')
+        $('.productBox3 p').text('Hiroshima Sofa')
+        $('.productBox4 p').text('Hiroshima Chair')
+        $('.productBox5 p').text('Hiroshima')
+        
+        },500)
+    })
+
+    $('#taschen').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+        
+        $('.imgBox img').attr('src','./image/brand/taschen/taschenbanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/taschen/taschen.png');
+
+
+        $('.bannerWord p').html(`Taschen由Benedikt Taschen於1980年在德國科隆創辦，從一間只有25坪的小漫畫店起家。1984年Benedikt於一次機會中購入四萬本英文版《Magritte》並全數售給德國人，體會到藝術不受語言限制，並萌生了銷售，甚至是出版藝術書的念頭，讓普羅大眾也能接觸藝術。隨即創立了Taschen並推出現今全球最暢銷藝術書系列之一的《基本藝術系列》、巨型圖書《SUMO-size》收藏家系列等。<br><br>往後39年間，Taschen不僅成為限量版書籍的先驅和表表者，並與時尚攝影大師Helmut Newton、法國設計鬼才Philippe Starck、日本建築師安藤忠雄（Tadao Ando）、澳洲工業設計師 Marc Newson 、當代日本攝影師荒木經惟（Nobuyoshi Araki）等多位大師級人物合作，更出版了橫跨建築、設計、藝術、古典、攝影、流行文化等廣泛的書籍種類，價格則從入手的百元至限量版的數百萬元不等。直到現在包括米蘭、巴黎、好萊塢、科隆、倫敦、香港等世界各地共有14間分店，深受各地書迷們喜愛與收藏。`)
+
+        $('.productBox1 img').attr('src','./image/brand/taschen/taschen(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/taschen/taschen(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/taschen/taschen(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/taschen/taschen(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/taschen/taschen(5).jpg')
+
+        $('.productBox1 p').text('David Hockney.')
+        $('.productBox2 p').text('Helmut Newton.')
+        $('.productBox3 p').text('The Circus.')
+        $('.productBox4 p').text('Depeche Mode')
+        $('.productBox5 p').text('Great Escapes Greece.')
+        
+        },500)
+    })
+
+    $('#vitra').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+        
+        $('.imgBox img').attr('src','./image/brand/vitra/vitrabanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/vitra/vitra.png');
+
+
+        $('.bannerWord p').html(`Vitra 一直是設計家具界的代表品牌，從 50 年代至今，在工業設計發展脈絡裡，具有不可不被提及的重要性。 1957 年首先以製造並經銷 Charles & Ray Eames 與 George Nelson 的家具在歐洲崛起； 1967 年推出首張一體成型、現代傳奇經典的 Panton Chair ； 1980 年代中期後，更以富涵實驗性質的 Vitra Edition 系列，引起世人注目。<br><br>Vitra 在設計領域發展至今，作品已經涵蓋了人們工作和生活環境的各個範疇，包括居家、辦公以及公共空間等，其不變的目標就是讓生活環境更加動人豐富，所以堅持與全球各地最頂尖的設計師合作，從 50 年代設計巨匠 Charles & Ray Eames、George Nelson、Jean Prouvé、Verner Panton，及榮獲「普立茲克建築獎」的建築大師 Frank Gehry、Norman Foster、Herzog & de Meuron、妹島和世到當代設計大師 Ron Arad、Jasper Morrison、Konstantin Grcic 等，都為 Vitra 創作了成為現代經典的完美作品。`)
+
+        $('.productBox1 img').attr('src','./image/brand/vitra/vitra(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/vitra/vitra(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/vitra/vitra(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/vitra/vitra(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/vitra/vitra(5).jpg')
+
+        $('.productBox1 p').text('Repos & Panchina')
+        $('.productBox2 p').text('Standard Cahir')
+        $('.productBox3 p').text('Organic Chair')
+        $('.productBox4 p').text('Chaise Tout Bois')
+        $('.productBox5 p').text('Panton Chair')
+        
+       
+        },500)
+    })
+
+    $('#arch').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+        
+        $('.imgBox img').attr('src','./image/brand/arch/archbanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/arch/arch.png');
+
+
+        $('.bannerWord p').html(`ARCHITECTMADE一系列的設計作品，如：木製的鳥、鴨子、小狗或是托盤，在北歐當地皆是平凡不過的生活用品，但要是凝神細心欣賞，很難不被其溫潤細緻的設計細節所吸引。在ARCHITECTMADE打造的設計國度，除了網羅眾多北歐巨匠級的設計師操刀外，更直接傳遞最純粹的北歐設計精神－人文、傳世、經典、實用。在北歐生活中，從建築物到家中的小飾品，無不兼顧美麗而實用的元素，更重要的是，與人們對生活的需要相互結合，這般以人文實用為出發點的設計思維，便是ARTCHITECTMADE 的品牌精神。`)
+
+        $('.productBox1 img').attr('src','./image/brand/arch/arch(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/arch/arch(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/arch/arch(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/arch/arch(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/arch/arch(5).jpg')
+
+        $('.productBox1 p').text('Baby Dark')
+        $('.productBox2 p').text('Sweet Birds')
+        $('.productBox3 p').text('Penguin')
+        $('.productBox4 p').text('Mermaid ')
+        $('.productBox5 p').text('Oscar')
+        
+        },500)
+    })
+
+    $('#GJ').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+        
+        $('.imgBox img').attr('src','./image/brand/GJ/GJbanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/GJ/GJ.png');
+
+
+        $('.bannerWord p').html(`創立於1935年的Artek為芬蘭設計家具的代表品牌，由「北歐現代主義之父」Alvar Aalto所領導成立，品牌內所生產之作品大多出自於Alvar Aalto的靈感，結合現代先進技術與傳統手藝製成，融入自然與建築思維、延展構思家具的新形態。 歷經近一世紀的考驗，Artek的作品除了全球各大美術館收藏外，亦成為芬蘭的現代設計典範。為了延續Alvar Aalto的現代主義精神，Artek也積極與Alvar Aalto基金會合作，致力於推動芬蘭的工業設計。<br><br>近年來Artek持續與世界頂尖的設計師合作，除了取得芬蘭設計大師Ilmari Tapiovaara的生產權利外，更與榮獲「普利茲克建築獎」的日本建築師─坂茂、「威尼師雙年展金獅獎」的德國藝術家Tobias Rehberger，以及Konstantin Grcic、Eero Mari、Eero Aarnio、深澤直人等設計大師合作，期望締造更多不同面向的設計火花。`)
+
+        $('.productBox1 img').attr('src','./image/brand/GJ/GJ(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/GJ/GJ(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/GJ/GJ(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/GJ/GJ(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/GJ/GJ(5).jpg')
+
+        $('.productBox1 p').text('ILSE')
+        $('.productBox2 p').text('HK')
+        $('.productBox3 p').text('Panton')
+        $('.productBox4 p').text('FREQUENCY')
+        $('.productBox5 p').text('KOPPEL')
+        
+        },500)
+    })
+
+    $('#magis').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+        
+        $('.imgBox img').attr('src','./image/brand/magis/magisbanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/magis/magis.png');
+
+
+        $('.bannerWord p').html(`成立於1976年的Magis，最初延續60、70年代崛起的塑料商品風潮，運用其可塑性及色彩鮮豔特質，創造突破傳統家具形式的活潑作品，為Magis奠定前衛且充滿幽默感的品牌形象。創辦人Eugenio Perazza更持續致力開發新科技，無論是射出成型灌模，或是世上首度採用氣體射出成型技術(air moulding)創造家具，延伸出塑料材質的無限可能，讓Magis以平實價格呈現最新穎、幽默的創意。<br><br>2003年，德國設計師 Konstantin Grcic接受Magis邀約，運用鋁灌模技術，打造第一把非塑料製成的經典單椅Chair One，繼而創造底座為水泥灌模的版本，將Magis王國「塑料時代」，推向研發前衛科技素材、製成技術的新領域。受時尚、設計領域人士奉為聖經的《Wallpaper》，亦將Magis創辦人Perazza列為「10 位改變我們生活方式的人」之首。英國當代設計大師Jasper Morrison、Tom Dixon，法國設計鬼才Philippe Starck、才華洋溢的法國兄弟檔設計師Ronan & Erwan Bouroullec、荷蘭設計代表Marcel Wanders，甚至是知名建築師 Zaha Hadid，都為Magis留下令人印象深刻的代表作品。`)
+
+        $('.productBox1 img').attr('src','./image/brand/magis/magis(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/magis/magis(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/magis/magis(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/magis/magis(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/magis/magis(5).jpg')
+
+        $('.productBox1 p').text('Cyborg')
+        $('.productBox2 p').text('Piña')
+        $('.productBox3 p').text('Chair One')
+        $('.productBox4 p').text('Sam Son')
+        $('.productBox5 p').text('Puppy')
+
+        },500)
+        
+    })
+
+    $('#TD').click(function(event){
+
+        $('.brandsBanner').css({"opacity": "0",
+            "transition": "0"});
+        
+        setTimeout(()=>{
+            $('.brandsBanner').css({"opacity": "1",
+            "transition": "1s"});
+        
+        $('.imgBox img').attr('src','./image/brand/TD/TDbanner.jpg');
+        $('.brandsLogo img').attr('src','./image/brand/TD/TD.png');
+
+
+        $('.bannerWord p').html(`英倫最具代表的設計品牌 ─「Tom Dixon」，於2002年由英國工業設計大師Tom Dixon與David Begg共同創立「Tom Dixon」同名品牌。<br><br>品牌理念以傳遞和復興英國家具工業精神及個人主義的創新為目標，Tom Dixon亦是位專注材質、技術、文化的全方位設計人，作品造型簡潔並充滿科技工業風格，將生活美學與前衛技術完美結合。品牌成立至今，於全球已有超過52個營業據點，創辦人Tom Dixon的作品更屢得國際獎項及世界各大博物館的典藏。品牌成功的結合創意、設計與商業，奠定了Tom Dixon在英國工業設計的領導地位，並成為享譽國際的知名品牌。`)
+
+        $('.productBox1 img').attr('src','./image/brand/TD/TD(1).jpg')
+        $('.productBox2 img').attr('src','./image/brand/TD/TD(2).jpg')
+        $('.productBox3 img').attr('src','./image/brand/TD/TD(3).jpg')
+        $('.productBox4 img').attr('src','./image/brand/TD/TD(4).jpg')
+        $('.productBox5 img').attr('src','./image/brand/TD/TD(5).jpg')
+
+        $('.productBox1 p').text('Eclectic Orientalist')
+        $('.productBox2 p').text('Melt')
+        $('.productBox3 p').text('Cut Short Gold')
+        $('.productBox4 p').text('Eclectic Alchemy')
+        $('.productBox5 p').text('FAT')
+        
+        },500)
+    })
+
+
+    </script>
+</body>
+</html>

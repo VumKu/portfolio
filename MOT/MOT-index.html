@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOT 明日聚落</title>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <style>
+    /* body */
+        body{
+            cursor: url('./image/cursor.png') 15 15, auto;
+        }
+    /* overlay-nav */
+        .overlay-nav{
+            display: flex;
+            height: 100%;
+            width: 100%;
+            z-index: 999;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transition: .6s;
+
+            transform: translateX(2000px);
+        }
+
+    /* overlay-LC */
+        .left-content{
+            width: 70%;
+            background-color: #F5F4F1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .left-content a{
+            text-decoration: none;
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 40px;
+            letter-spacing: 0.2em;
+            line-height: 2em;
+            font-weight: 500;
+            color: #1C1C1C;
+
+            border-bottom: 1px solid transparent;
+
+            margin-left: 80px;
+        }
+
+        .left-content p{
+            display: inline-block;
+        }
+        .left-content p:hover{
+            transition: 1s;
+            color: #b6b6b6;
+            font-size: 30px;            
+        }
+        .left-content span{
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 15px;
+            letter-spacing: 0.2em;
+            font-weight: 300;
+            margin: 40px 18px 0 80px;
+            color: #1C1C1C;
+        }
+    /* overlay-RC */
+        .right-content{
+            width: 30%;
+            background-color: #1C1C1C;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            position: relative;
+        }
+        .rc-sideWord{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            position: absolute;
+            right: 250px;
+
+            color: #F5F4F1;
+            letter-spacing: 0.3em;
+
+            transform: rotate(90deg);
+            overflow: hidden;
+        }
+        .rc-container{
+            display: flex;
+            height: 50%;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 0 10px;
+        }
+        .mail, .socialbox{
+            width: 100%;
+            margin: 0 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .socialbox p{
+            display: inline-block;
+            border-bottom: 1px solid transparent;
+            padding: 0 0 5px 0;
+        }
+        .socialbox p:hover{
+            border-bottom: 1px solid #F5F4F1;
+            transition: .5s;
+        }
+        .right-content a{
+            text-decoration: none;
+            color: #F5F4F1;
+
+            margin: 15px 0;
+            font-size: 20px;
+        }
+        .mailtitle{
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0 10px 100px 10px;
+            color: #F5F4F1;
+        }
+        .right-content form{
+            position: relative;
+            padding: 0 10px;
+        }
+        .right-content .mailbox{
+            width: 90%;
+            border: 0;
+            outline-width: 0px;
+            padding: 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #F5F4F1;
+            background-color: #1C1C1C;
+            font-size: 18px;
+            color:#F5F4F1;
+        }
+        .mail .arrowstyle{
+            fill: #F5F4F1;
+            max-width: 10px;
+            position: absolute;
+            right: 40px;
+            top: 3px;
+            padding: 0 10px;
+        }
+        .mail .arrowstyle:hover{
+            transition: .5s;
+            right: 30px;
+        }
+        .closebtn{
+            position: absolute;
+            right: 40px;
+            top: 40px;
+            fill: #F5F4F1;
+        }
+
+
+
+    /* nav */
+        .nav-container{
+            width: 100%;
+            justify-content: space-between;
+            display: flex;
+            position: fixed;
+            z-index: 99;
+        }
+        .logo{
+            max-width: 176px;
+            margin: 25px 20px;
+        }
+        .logo img{
+            width: 100%;
+        }
+        .nav{
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+
+        .account, .searchicon, .menu{
+            padding: 0 20px;
+        }
+        .searchicon{
+            border-right: 1px solid #fff;
+        }
+        .searchWord{
+            border: 0;
+            outline-width: 0px;
+            padding: 0;
+            border-bottom: 1px solid #F5F4F1;
+            background-color: transparent;
+            font-size: 16px;
+            color:#F5F4F1;
+
+            display: none;
+        }
+        .account{
+            color: #fff;
+            margin-right: 20px;
+        }
+        .nav a{
+            text-decoration: none;
+        }
+
+    /* login */
+        .logInBox{
+            display: flex;
+            height: 100%;
+            width: 100%;
+            
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: url(./image/login.jpg) no-repeat;
+
+            transform: translateY(2000px);
+            transition: .6s;
+        }
+        #mainContent{
+            width: 500px;
+            height: 400px;
+            background-color: rgba(255, 255, 255, 0.4);
+            position: absolute;
+            top: 25%;
+            left: 36%;
+            border-radius: 70px 0 70px 0;
+            box-shadow: 0px 15px 15px -15px rgb(65, 65, 65);
+        }
+        .content{
+            text-align: center;
+            padding: 40px;
+            
+        }
+        .content p{
+            font-family: 'Cormorant', serif;
+            font-size: 50px;
+            font-weight: 700;
+            color: #7c7575;
+        }
+        .logArea{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 60px;
+        }
+        .logArea input{
+            width: 60%;
+            border: 0;
+            outline-width: 0px;
+            padding: 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #6b6b6b62;
+            background-color: transparent;
+            font-size: 18px;
+            color:rgba(129, 129, 129, 0.8);
+            margin: 0 0 30px 0 ;
+        }
+        .logArea ::-webkit-input-placeholder {
+            color: rgba(129, 129, 129, 0.5);
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 14px; 
+        }
+
+        .logBtn button{
+            width: 20%;
+            background-color: #b6b6b652;
+            border:0px ;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 40px 30px ;
+
+            color: #fff;
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+        }
+        .logBtn button:hover{
+            background-color: #b6b6b6;
+        }
+        .logBtn button:focus{
+            outline-width: 0px;
+            background-color: #7c7575;
+        }
+
+    /* header */
+        .header{
+            width: 100%;
+        }
+        video{
+            width: 100%;
+            margin-bottom: -3px;
+        }
+    /* news */
+        .w-title{
+            text-align: center;
+            font-family:'Newsreader', serif;
+            font-size: 40PX;
+            font-weight: 700;
+            color: rgb(110, 110, 110);
+            background-color: #F5F4F1;
+
+            padding: 100px 0 0 0;
+            /* border: 1px solid red; */
+        }
+        .news-container{
+            background-color: #F5F4F1;
+            padding: 100px 30px;
+            display: flex;
+            justify-content: center;
+            
+        }
+        .nc1{
+            padding: 0 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+
+            /* border: 1px solid red ; */
+        }
+        .article1{
+            max-width: 500px;
+            opacity: 0.5;
+            position: relative;
+        }
+        .article1 img{
+            width: 100%;
+        }
+        .art-title{
+            width: 100%;
+            padding: 20px 10px;
+
+            background-color: rgba(0, 0, 0, 0.4);
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            font-family:'Noto Sans TC', sans-serif;
+            line-height: 1.5em;
+
+            position: absolute;
+            bottom: -50px;
+            
+            opacity: 0;
+        }
+        .nc2{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0 5px;
+
+            /* border: 1px solid red ; */
+        }
+        .article2{
+            max-width: 600px;
+            opacity: .5;
+            position: relative;
+        }
+        .article2 img{
+            width: 100%;
+        }
+        .article1:hover{
+            opacity: 1;
+            transition: .5s;
+        }
+        .article2:hover{
+            opacity: 1;
+            transition: .5s;
+        }
+        #titleshow:hover .art-title{
+            opacity: 1;
+            bottom: 4px;
+            transition: .5s;
+        }
+
+        
+
+
+
+        
+    /* story */
+        .story{
+            background-color: #000;
+            position: relative;
+            
+            padding: 80px 18px 50px 18px;
+
+            /* border: 1px solid red; */
+        }
+        .st-sideWord{
+            width: 50%;
+            display: flex;
+            justify-content: space-evenly;
+
+            position: absolute;
+            top: 540px;
+            left:-350px;
+
+            color: #F5F4F1;
+            letter-spacing: 0.3em;
+
+            transform: rotate(-90deg);
+
+            /* animation: sideWord 1.5s ease-in; */
+        }
+
+        @keyframes sideWord{
+            from{
+                left:-400px;
+                opacity: 0;
+            }
+
+            to{
+                left:-350px;
+                opacity: 1;
+            }
+        }
+
+
+        .st-main{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .st-lc{
+            position: relative;
+            padding: 560px 8px 0 0;
+            /* animation: title .8s ease-in; */
+        }
+
+        @keyframes title{
+            from{
+                padding-top: 600px;
+            }
+
+            to{
+                padding-top: 560px;
+            }
+        }
+
+        .b-title{
+            font-family:'Newsreader', serif;
+            font-size: 40PX;
+            font-weight: 700;
+            color: #F5F4F1;
+        }
+        .st-lc a{
+            width: 100%;
+            color: #fff;
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 29px;
+            font-weight: 400;
+            text-align: right;
+            line-height: 1.3em;
+
+            margin-right: 130px;
+        }
+
+        .lc-imgWord{
+            width: 174px;
+            height: 231px;
+            background: url(./image/story02.jpg) no-repeat;
+            /* padding: 85px 60px; */
+            background-size: cover;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: absolute;
+            top: 600px;
+
+            border-radius: 15px;
+
+            /* animation: imgWord 1.5s ease-in; */ 
+        }
+
+        @keyframes imgWord{
+            from{
+                top: 660px;
+                opacity: 0;
+            }
+
+            to{
+                top: 600px;
+                opacity: 1;
+            }
+        }
+
+
+        .st-rc{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+        }        
+        .st-img{
+            width: 100%;
+            margin: 0 0 40px 0;
+            position: relative;
+            /* animation: image 2s ease-in; */
+
+            /* border: 1px solid red; */
+        }
+
+        @keyframes image{
+            from{
+                top:-100px;
+                opacity: 0;
+            }
+
+            to{
+                top: 0;
+                opacity: 1;
+            }
+        }
+
+
+
+        .st-img img{
+            width: 100%;
+            border-radius: 20px;
+        }
+        .st-rc p{
+            max-width: 450px ;
+            margin: 0 0 30px 0;
+
+            position: relative;
+
+            color: #F5F4F1;
+            font-family:'Shippori Mincho B1', serif;
+            line-height: 1.7em;
+            text-align: right;
+            letter-spacing: 1px;
+
+            /* animation: word 1.5s ease-in; */
+        }
+
+        @keyframes word{
+            from{
+                right:-100px;
+                opacity: 0;
+            }
+
+            to{
+                right: 0;
+                opacity: 1;
+            }
+        }
+
+    /* Brand */
+        .brand{
+            background-color: #F5F4F1;
+        }
+        .brandContainer-imgR{
+            display: flex;
+            justify-content: flex-end;
+
+            padding: 80px 100px 0px 0;
+
+            /* border: 1px solid red; */
+        }
+
+        .b-img-container01{
+            max-width: 338px;
+            display: flex;
+            align-items: center;
+
+            /* border: 1px solid red; */
+        }
+        .imgRound{
+            width: 100%;
+            border-radius: 168px;
+            opacity: 0.3;            
+        }
+        .brand-content{
+            width: 40%;
+            padding: 0 18px;
+            margin: 0 30px;
+
+
+            font-family:'Shippori Mincho B1', serif;
+            line-height: 1.7em;
+            letter-spacing: 1px;
+
+            display: flex;
+            align-items: center;
+            
+            /* border: 1px solid red; */
+        }
+        .brandContainer-imgR p{
+            text-align: right;
+        }
+
+        .brandContainer-imgL{
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+
+            padding: 40px 0 90px 100px;
+
+            /* border: 1px solid red; */
+
+        }
+        .imgSquare{
+            width: 100%;
+            opacity: 0.3;
+        }
+        .brandContainer-imgL .brand-content{
+            align-items: flex-end;
+        }
+
+        .lastSize{
+            padding: 0px 100px 30px 0;
+        }
+        .b-img-container02{
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .imgRound02{
+            width: 100%;
+            opacity: 0.3;
+        }
+
+        .brandLink{
+            font-family:'Shippori Mincho B1', serif;
+            font-size: 26px;
+            color: #1C1C1C;
+            font-weight: 600;
+
+            margin: 70px 80px ;
+            display: inline-block;
+
+            position: relative;
+            left: 0px;
+
+            /* border: 1px solid red; */
+        }
+        .brandLinkStyle{
+            display: flex;
+            justify-content: flex-end;
+            text-decoration: none;
+        }
+        .brandLink:hover{
+            left: 20px;
+            color: #b6b6b6;
+            transition: .5s;
+        }
+
+
+    /* newsletter */
+        .newsletter{
+            background-color: #000;
+        }
+        .footerMail{
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 30px;
+        }
+        .fm-box{
+            max-width: 500px;
+            
+        }
+        .footerMail p{
+            font-family: 'Shippori Mincho B1', serif;
+            font-size: 26px;
+            font-weight: 800;
+            margin: 0 0 90px 0;
+            color: #F5F4F1;
+        }
+        .footerMail .mailbox{
+            width: 100%;
+            border: 0;
+            outline-width: 0px;
+            padding: 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #F5F4F1;
+            background-color: #000;
+            font-size: 18px;
+            color:#F5F4F1;
+        }
+        .footerMail a{
+            color: #F5F4F1;
+            position: relative;
+        }
+        .footerMail .arrowstyle{
+            width: 12px;
+            position: absolute;
+            right: 10px;
+            padding: 0 0 0 10px;
+        }
+        .footerMail .arrowstyle:hover{
+            right: 3px;
+            transition: .5s;
+        }        
+    /* footer */
+        .footer{
+            background-color: #F5F4F1;
+        }
+        .footerContent{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+        .footerContent p{
+            font-family:'Shippori Mincho B1', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #a3a3a3;
+        }
+        .footerContent span{
+            font-size: 14px;
+            margin-left: 12px;
+        }
+        .slogan{
+            width: 15%;
+        }
+        .footerContent .copy{
+            font-family:'Shippori Mincho B1', serif;
+            font-size: 12px;
+            color: #a3a3a3;
+        }
+        .social{
+            width: 15%;
+            /* max-width: 165px; */
+            display: flex;
+            justify-content: flex-end;
+        }
+        .social a{
+            color: #a3a3a3;
+            margin: 0 5px;
+        }
+        .socialStyle{
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border-radius: 50%;
+            padding: 5px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .socialStyle svg{
+            width: 70%;
+            
+        }
+
+    /* Go-Top */
+        .go-top {
+            display: block;
+            width: 30px;
+            height: 30px;
+            line-height: 35px;
+            text-align: center;
+            font-size: 30px;
+            position: fixed;
+            bottom: -40px;
+            right: 20px;
+            -webkit-transition: all 1s ease;
+            -moz-transition: all 1s ease;
+            -o-transition: all 1s ease;
+            transition: all 1s ease;
+            background-color: #404040;
+            color: #FFFFFF;
+            text-decoration: none;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .go-top.show { bottom: 20px; }
+
+        .go-top:hover {
+            background-color: #bebebe;
+            color: #FFFFFF;
+        }
+
+        
+    /* RWD */
+        @media (max-width: 880px){
+
+        /* News條整 */
+            .art-title{
+                font-size: 14px;
+            }
+
+        /* Brand調整 */
+            .brandContainer-imgR, .brandContainer-imgL{
+                flex-direction: column-reverse;
+                padding: 30px 18px;
+                align-items: center;
+            }
+            .brandContainer-imgR p{
+                width: 100%;
+                text-align: left;
+                padding-top: 50px;
+            }
+            .brand-content{
+                width: 100%;
+                text-align: left;
+                padding-top: 50px;
+            }
+
+        }
+
+        @media (max-width: 1100px){
+
+        /* Story調整 */
+            .lc-imgWord{
+                position:initial;
+            }
+            .st-lc{
+                padding-top: 400px;
+            }
+        }
+        
+        @media (max-width: 700px){
+
+        /* nav-bar調整 */
+            .nav-container{
+                margin: 0;
+                padding: 0;
+            }
+            .nav{
+                margin: 0;
+            }
+            .searchicon, .account{
+                display: none;
+            }
+            .logo{
+                max-width: 120px;
+                margin: 15px 10px;
+            }
+
+        /* full-page-nav調整 */
+            .left-content a{
+                font-size: 28px;
+                margin-left: 30px;
+            }
+            .left-content span{
+                font-size: 12px;
+                margin-left: 30px;
+            }
+            .rc-container .mailtitle{
+                font-size: 14px;
+                line-height: 1.5em;
+            }
+            .right-content a{
+                font-size: 14px;
+                margin: 10px 0;
+            }
+            .mail, .socialbox{
+            margin: 0
+            }
+            .mail .arrowstyle{
+            right: 30px;
+            }
+        }
+
+        @media (max-width: 500px){
+
+        /* full-page-nav調整 */
+            .left-content a{
+                font-size: 20px;
+            }
+            .mailtitle{
+                margin-bottom: 50px;
+            }
+            .mail .arrowstyle{
+            right: 15px;
+            }
+
+        /* Story調整 */
+            .st-lc{
+                padding-top: 0;
+            }
+            .st-lc a{
+                font-size: 22px;
+                text-decoration: none;
+            }
+            .st-rc p{
+                text-align: left;
+            }
+            .rc-container .b-title{
+                display: none;
+            }
+            .lc-imgWord{
+                width: 120px;
+                height: 500px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+        /* Footer調整 */
+            .footerContent{
+                padding: 20px 10px;
+            }
+            .social, .slogan{
+                display: none;
+            }
+            .copy{
+                margin: 0 auto;
+            }
+        
+        }
+
+        @media (max-width: 376px){
+
+        /* full-page-nav調整: 讓mailbox消失 */
+            .left-content a{
+                font-size: 16px;
+                margin-left: 30px;
+            }
+            .left-content span{
+                display: none;
+            }
+            .mailtitle{
+                display: none;
+            }
+            .socialbox p{
+                padding: 0 10px;
+            }
+            .right-content a{
+                font-size: 10px;
+                margin: 10px 0;
+            }
+            .rc-container{
+                justify-content: center;
+            }
+            .mail{
+                display: none;
+            }
+
+        /* News調整 */
+            .art-title{
+                font-size: 8px;
+                font-weight: 500;
+                line-height: 2em;
+
+                padding: 10px 5px;
+            }
+        }
+
+        @media (max-width: 1500px){
+
+        /* Story調整: 讓sideword消失 */
+            .st-sideWord{
+                display: none;
+            }
+        }
+
+        @media(max-width: 1750px){
+
+        /* full-page-nav調整: 讓sideword消失 */
+            .rc-sideWord{
+                display: none;
+            }
+        }
+
+    </style>
+
+
+
+</head>
+
+<body>
+    <div class="overlay-nav">
+        <div class="left-content">
+            <a href="#news" class="news"><p>NEWS</p></a>
+            <a href="./MOT-story.html"><p>STORY</p></a>
+            <a href="./MOT-brand.html"><p>FURNITURE & ACCESSORIES</p></a>
+            <a href="https://www.domanitaipei.com/"><p>RESTAURANT</p></a>
+            <a href="./MOT-store.html"><p>CONTACT</p></a>
+            <span>MOT CASA  |  MOT SELECT  |  MOT FOLOWER  |  MOT ARTS</span>
+        </div>
+        <div class="right-content">
+            <div class="rc-sideWord">
+                <span>Mall Of Tomorrow</span>
+                <span>Your Life Style</span>
+            </div>
+
+            <div class="rc-container">
+                <div class="mail">
+                    <p class="mailtitle">KNOW MORE ABOUT US</p>
+                    <form>
+                        <input class="mailbox" type="email" placeholder="Email" size="20">
+
+                        <a href=""><svg class="arrowstyle" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg></a>
+                    </form>
+                </div>
+                <div class="socialbox">
+                    <a href=""><p>TWITTER</p></a>
+                    <a href=""><p>FACEBOOK</p></a>
+                    <a href=""><p>INSTAGRAM</p></a>
+                </div>
+            </div>
+        </div>
+        <a href="">
+            <svg class="closebtn" version="1.1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 20 20">
+            <title>close</title>
+            <path d="M10 8.586l-7.071-7.071-1.414 1.414 7.071 7.071-7.071 7.071 1.414 1.414 7.071-7.071 7.071 7.071 1.414-1.414-7.071-7.071 7.071-7.071-1.414-1.414-7.071 7.071z"></path>
+            </svg>
+        </a>
+    </div>
+
+    <div class="nav-container">
+        <div class="logo">
+            <a href="./MOT-index.html"><img src="./image/logo.png" alt=""></a>
+        </div>
+        <div class="nav">
+            <div class="searchbox">
+                <input class="searchWord" type="text" placeholder="" size="20">
+                
+                <svg class="searchicon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 16 16" version="1.1" class="injected-svg" data-src="/images/icon-search.svg">
+                <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+                <title>Group</title>
+                <desc>Created with Sketch.</desc>
+                <defs></defs>
+                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Topnav:-Icon" transform="translate(-1053.000000, -14.000000)" stroke="#FFFFFF" class="color-stroke">
+                        <g id="Group-2" transform="translate(1054.000000, 13.000000)">
+                            <g id="Group" transform="translate(0.000000, 2.000000)">
+                                <circle id="Oval-3" cx="5.80413818" cy="5.80413818" r="5.80413818"></circle>
+                                <path d="M10.6295776,10.6295776 L14.0625,14.0625" id="Line-78" stroke-linecap="square"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                </svg>
+                
+            </div>
+
+
+                <div class="open">
+                    <p class="account">LOG IN</p>
+                </div>
+
+            
+                <svg class="menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="menu-icon injected-svg" width="27px" height="18px" viewBox="0 0 27 18" version="1.1" data-src="/images/icon-menu.svg">
+                <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Topnav:-Icon" transform="translate(-1173.000000, -13.000000)" fill="#FFFFFF" class="color-fill">
+                        <g id="Group-2" transform="translate(1054.000000, 13.000000)">
+                            <g id="Group-16" transform="translate(119.000000, 0.000000)">
+                                <rect id="Rectangle-4" x="0" y="0" width="27" height="2"></rect>
+                                <rect id="Rectangle-4-Copy" x="0" y="16" width="27" height="2"></rect>
+                                <rect id="Rectangle-4-Copy-2" x="0" y="8" width="27" height="2"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                </svg>
+           
+        </div>
+    </div>
+
+    <div class="logInBox">
+        <div id="mainContent">
+            
+                <div class="content animate__animated animate__bounce">
+                    <p>Welcome Back</p>
+                    <div class="logArea">
+                        <input type="text" placeholder="Email-address">
+                        <input type="password" placeholder="Password">
+                    </div>
+                    <div class="logBtn">
+                        <button class="ligin" type="button">Login</button>
+                        <button class="cancel" type="button">Cancel</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="header">
+        <video loop muted autoplay class="header-video">
+            <source src="./banner-video.mp4">
+        </video>
+    </div>
+
+    <div class="w-title" id="news">
+        <h1>NEWS</h1>
+    </div>
+    <div class="news-container">
+        <div class="nc1">
+            <div class="article1" id="titleshow">
+                <a href=""><img src="./image/art1.jpg" alt>
+                <p class="art-title">
+                    法國建築大師Jean Prouvé家具設計展！<br>
+                    柯比意、布萊德彼特都著迷的機械美學經典
+                </p>
+                </a>
+            </div>
+            <div class="article1" id="titleshow">
+                <a href=""><img src="./image/art4.jpg" alt>
+                    <p class="art-title">
+                        日本當代生活設計賞<br>
+                        從平凡日常物件，獲得溫柔感動！
+                    </p>
+                </a>
+            </div>
+        </div>
+        <div class="nc2">
+            <div class="article2" id="titleshow">
+                <a href=""><img src="./image/art2.jpg" alt>
+                    <p class="art-title">
+                        「MARC NEWSON- 為世界創造曲線的人」設計展<br>
+                        明日選品再現澳洲設計大師科幻居家夢！
+                    </p>
+                </a>
+            </div>
+            <div class="article2" id="titleshow">
+                <a href=""><img src="./image/art3.jpg" alt>
+                    <p class="art-title">
+                        超跑藝術家具Mobellio首度於明日選品MOT SELECT亮相<br>
+                        歐美獲獎無數夢幻超跑特製家具 帶來頂級奢華新享受
+                    </p>
+                </a>
+            </div>
+            <div class="article2" id="titleshow">
+                <a href=""><img src="./image/art5.png" alt>
+                    <p class="art-title">
+                        明日咖啡與獨立攝影書店moom bookshop攜手舉辦<br>
+                        夏日攝影書展──為今年夏天帶來一場安靜的練習
+                    </p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="story">
+        <div class="st-sideWord">
+            <span>MOT</span>
+            <div class="line"></div>
+            <span>Mall Of Tomorrow</span>
+        </div>
+        <div class="st-main">
+            <div class="st-lc">
+            <p class="b-title">STORY</p>
+            <a href="./MOT-story.html">
+                <div class="lc-imgWord">
+                    Get<br>
+                    more<br>
+                    about us
+                </div>
+            </a>
+            </div>
+            <div class="st-rc">
+                <div class="st-img">
+                    <img src="./image/story01.jpg" alt="">
+                </div>
+                <p>For a better tomorrow, It has a stylish and unique exterior, housing a series of restaurants, shops and a hotel. A range of Stellar Works pieces feature in the restaurant and bar areas, including the Utility, Industry and Bund collection.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="brand">
+        <div class="w-title">Brand</div>
+        <div class="brandContainer-imgR">
+            <p class="brand-content" id="bc01">The Arc collection is a response to the modern work situation, which the designer wanted it to provide the shelter and remind people of home. The designer gave this collection a distinct character and made it stand out from typical contract furniture. <br><br>
+            The soft silhouette of the sofa strengthens the instantly recognizable character. A thick seam sweeps along the edge of the sofa, like a barrier between the strict and straight outside shape, and the softer sculpted inside. With embracing curves and intricate upholstery details.</p>
+            <div class="b-img-container01">
+                <img class="imgRound" src="./image/brand/vipp/vipp(5).jpg" alt>
+            </div>
+        </div>
+
+        <div class="brandContainer-imgL">
+            <p class="brand-content" id="bc02">The designer gave this collection a distinct character and made it stand out from typical contract furniture. The soft silhouette of the sofa strengthens the instantly recognizable character. <br><br>
+            A thick seam sweeps along the edge of the sofa, like a barrier between the strict and straight outside shape, and the softer sculpted inside. With embracing curves and intricate upholstery details, the Arc collection has a gentle character that makes it the perfect for both retail and soft contract market.</p>
+            <div class="b-img-container01">
+                <img class="imgSquare" src="./image/brand/moooi/moooi01.jpg" alt>
+            </div>
+        </div>
+
+        <div class="brandContainer-imgR lastSize">
+            <p class="brand-content" id="bc03">The soft silhouette of the sofa strengthens the instantly recognizable character. A thick seam sweeps along the edge of the sofa, like a barrier between the strict and straight outside shape, and the softer sculpted inside. With embracing curves and intricate upholstery details, the Arc collection has a gentle character that makes it the perfect for both retail and soft contract market.</p>
+            <div class="b-img-container02">
+                <img class="imgRound02" src="./image/brand/gtv/gtv02.png" alt>
+            </div>
+        </div>
+        <a class="brandLinkStyle" href="./MOT-brand.html"><p class="brandLink">+ MORE</p></a>
+    </div>
+
+    <div class="newsletter">
+        <div class="footerMail">
+            <div class="fm-box">
+                <p>SIGN UP FOR NEWSLETTER</p>
+                <form>
+                    <input class="mailbox" type="email" placeholder="Email" size="20">
+
+                    <a href=""><svg class="arrowstyle" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg></a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footerContent">
+            <p class="slogan">MOT<span>A better tomorrow.</span></p>
+            <p class="copy">COPYRIGHT © 2021 MOT ALL RIGHTS RESERVED.</p>
+            <div class="social">
+                <a href="">
+                    <div class="socialStyle">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" class="svg-inline--fa fa-twitter fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="socialStyle">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f" class="svg-inline--fa fa-facebook-f fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
+                    </div>
+                </a>
+                <a href="">
+                    <div class="socialStyle">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram" class="svg-inline--fa fa-instagram fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="go-top-btn">
+        <a href="#myAnchor" class="go-top">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <title>keyboard_arrow_up</title>
+                <path fill=#F5F4F1 d="M7.406 15.422l-1.406-1.406 6-6 6 6-1.406 1.406-4.594-4.594z"></path>
+            </svg>
+        </a>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <script>
+        // navbar滑下來變色
+        $(window).scroll(function(){
+            console.log('height',$(this).scrollTop())
+            let windowScrollTop = $(this).scrollTop()
+
+            if (windowScrollTop > 970) {
+                $('.nav-container').css('background','#1C1C1C')
+            }
+            else {
+                $('.nav-container').css('background','none')
+            }
+
+        // story區塊，滑到才觸發動畫
+            if(windowScrollTop > 1300){
+                $('.st-img').css('animation','image 2.3s ease-in');
+                $('.st-sideWord').css('animation','sideWord 1.5s ease-in');
+                $('.st-lc').css('animation','title .8s ease-in');
+                $('.lc-imgWord').css('animation','imgWord 2s ease-in');
+                $('.st-rc p').css('animation','word 1.5s ease-in');
+            }
+            else{
+                $('.st-img').css('animation','');
+                $('.st-sideWord').css('animation','');
+                $('.st-lc').css('animation','');
+                $('.lc-imgWord').css('animation','');
+                $('.st-rc p').css('animation','');
+            }
+        })
+
+       
+        // full page選單進場
+       $('.menu').click(function(event){
+           event.preventDefault()
+
+           let navPosition = {
+               width: '100%',
+               transform: 'translateX(0)'
+           }
+           $('.overlay-nav').css(navPosition);
+           
+       })
+       // full page選單退場
+       $('.closebtn').click(function(event){
+           event.preventDefault()
+
+           let closeNav = {
+               width: 0,
+               transform: 'translateX(2000px)'
+           }
+           $('.overlay-nav').css(closeNav);
+       })
+
+        // login打開    
+        $('.open').click(function(){
+            let openstyle = {
+                height: '100%',
+                transform:'translateY(0px)'
+            }
+           $('.logInBox').css(openstyle)
+        })
+        
+        // login關掉
+        $('.cancel').click(function(){
+            let closestyle = {
+                height: '0%',
+                transform:'translateY(2000px)'
+            }
+            $('.logInBox').css(closestyle)
+        })
+
+       // 選單連結同一頁指定位置時，跳轉並收起選單    
+       $('.news').click(function(){
+        let closeNav = {
+               width: 0,
+               transform: 'translateX(2000px)'
+           }
+        $('.overlay-nav').css(closeNav);
+       })
+
+
+       // search-icon點下去會展開搜尋框    
+       $('.searchicon').click(function(event){
+            event.preventDefault()
+            console.log('display',$('.searchWord').css('display'))
+            
+
+            if( $('.searchWord').css('display') === 'none'){
+                $('.searchWord').css('display','inline-block');
+            }
+            else{
+                $('.searchWord').css('display','none');
+            }
+
+       })
+
+
+       // 滑到指定位置，圖片css加入陰影 
+       $(window).scroll(function(){
+        // console.log('offset', $(this).scrollTop())
+
+        let windowScrollTop = $(this).scrollTop()
+
+        let roundStyle = {
+            filter: 'drop-shadow(10px 12px 10px rgba(0, 0, 0, 0.5))',
+            transition: '.8s',
+            opacity: '1'
+        }
+
+        let squareStyle = {
+            boxShadow: '-10px 12px 10px rgba(0, 0, 0, 0.5)',
+            transition: '.8s',
+            opacity: '1'
+        }
+
+        if ( windowScrollTop > $('.lc-imgWord').offset().top){
+
+            $('.imgRound').css(roundStyle)
+        }
+
+        if ( windowScrollTop > $('#bc01').offset().top){
+
+            $('.imgSquare').css(squareStyle)
+        }
+
+        if ( windowScrollTop > $('#bc02').offset().top){
+
+            $('.imgRound02').css(roundStyle)
+        }
+
+       })
+
+
+       // Go-Top
+       $(window).scroll(function(event){
+            let scroll = $(window).scrollTop();
+            if (scroll >= 50) {
+            $(".go-top").addClass("show");
+            } else {
+            $(".go-top").removeClass("show");
+            }
+        });
+
+        $('.go-top-btn').click(function(){
+            event.preventDefault();
+            $("html,body").animate(
+        {
+            scrollTop: 0,
+        },700);
+        });
+
+    </script>
+</body>
+</html>
